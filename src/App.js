@@ -1,4 +1,5 @@
 import ArticleList from './components/ArticleList';
+import Clock from './components/Clock';
 
 const articles = [
   { id: 1, title: 'Article 1' },
@@ -7,7 +8,13 @@ const articles = [
 ];
 
 function App() {
-  return <ArticleList articles={articles} />;
+  return (
+    <div>
+      <Clock />
+      <ArticleList articles={articles} />
+    </div>
+  )
+
 }
 
 export default App;
