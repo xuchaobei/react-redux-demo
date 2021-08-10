@@ -1,25 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import ArticleList from './components/ArticleList';
+
+const articles = [
+  { id: 1, title: 'Article 1' },
+  { id: 2, title: 'Article 2' },
+  { id: 3, title: 'Article 3' },
+];
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <ArticleList articles={articles} />;
 }
 
 export default App;
