@@ -6,10 +6,17 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "date-fns": "^2.23.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
+  },
+  "devDependencies": {
+    "faker": "^5.5.3",
+    "miragejs": "^0.1.41",
+    "seedrandom": "^3.0.5",
+    "txtgen": "^2.2.8"
   },
   "scripts": {
     "start": "react-scripts start",
