@@ -1,5 +1,6 @@
-import ArticleList from './components/ArticleList';
-import Clock from './components/Clock';
+// import ArticleList from './components/ArticleList';
+// import Clock from './components/Clock';
+import AddPostForm from './components/AddPostForm';
 
 const articles = [
   { id: 1, title: 'Article 1' },
@@ -10,8 +11,7 @@ const articles = [
 function App() {
   return (
     <div>
-      <Clock />
-      <ArticleList articles={articles} />
+      <AddPostForm />
     </div>
   )
 
