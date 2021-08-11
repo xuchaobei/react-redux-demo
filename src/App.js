@@ -1,38 +1,32 @@
-import {useState, useEffect} from 'react'
-import ArticleList from './components/ArticleList';
-import { client } from './api/client';
-import Clock from './components/Clock';
-
-// const articles = [
-//   { id: 1, title: 'Article 1' },
-//   { id: 2, title: 'Article 2' },
-//   { id: 3, title: 'Article 3' },
-// ];
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './features/home';
+import Editor from './features/editor';
+import Login from './features/login';
+import Post from './features/post';
 
 function App() {
-  const [articles, setArticles] = useState([])
-
-  useEffect(()=> {
-    const fetchArticles = async () => {
-      try{
-        const response = await client.get('/fakeApi/posts');
-        console.log(response)
-        setArticles(response.posts);
-      }catch(err){
-        console.error(err)
-      }
-    }
-
-    fetchArticles();
-  }, [])
-
   return (
-    <div>
-      <Clock/>
-      <ArticleList articles={articles}/>
-    </div>
-  )
-
+    <Router>
+      <Navbar />
+      <div className="App">
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/editor">
+            <Editor />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/posts/:id">
+            <Post />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default App;

@@ -1,0 +1,34 @@
+.navBar {
+  display: flex;
+  background-color: blueviolet;
+}
+
+.navBar h1 {
+  color: white;
+  margin: 1.5rem 0;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+nav a,
+nav a:active {
+  font-weight: 700;
+  padding: 0.25rem 1.5rem;
+  border-radius: 4px;
+  color: white !important;
+  background: #481499;
+}
+
+nav a:hover {
+  color: white;
+  background: #926bcf;
+}
+
+.navContent {
+  display: flex;
+  justify-content: left;
+}
+
+.navLinks {
+  display: flex;
+}
