@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import ArticleList from './components/ArticleList';
 import { client } from './api/client';
+import Clock from './components/Clock';
 
 // const articles = [
 //   { id: 1, title: 'Article 1' },
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <div>
+      <Clock/>
       <ArticleList articles={articles}/>
     </div>
   )
