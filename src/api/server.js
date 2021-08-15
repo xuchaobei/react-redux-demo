@@ -6,7 +6,6 @@ import {
   hasMany,
   association,
   RestSerializer,
-  Response,
 } from 'miragejs';
 
 import faker from 'faker';
@@ -78,11 +77,7 @@ new Server({
       if (user) {
         return user;
       } else {
-        return new Response(
-          400,
-          {},
-          { error: 'Username or password is wrong' },
-        );
+        throw new Error('Username or password is wrong' );
       }
     });
 
@@ -113,8 +108,10 @@ new Server({
       // Work around some odd behavior by Mirage that's causing an extra
       // user entry to be created unexpectedly when we only supply a userId.
       // It really want an entire Model passed in as data.user for some reason.
-      const user = schema.users.find(data.userId);
-      data.user = user;
+      if(data.userId){
+        const user = schema.users.find(data.userId);
+        data.user = user;
+      }
 
       if (data.content === 'error') {
         throw new Error('Could not save the post!');

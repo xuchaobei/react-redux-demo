@@ -1,0 +1,18 @@
+.post-excerpt {
+  padding: 0.25rem 0.25rem;
+  border: 1px solid rgb(177, 174, 174);
+  border-radius: 7px;
+}
+
+.post-list .post-excerpt + .post-excerpt {
+  margin-top: 0.5rem;
+}
+
+.post-excerpt h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+p.post-content {
+  margin-top: 10px;
+}
