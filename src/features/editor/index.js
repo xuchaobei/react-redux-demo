@@ -1,16 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
-import { nanoid } from '@reduxjs/toolkit';
+import { nanoid, unwrapResult } from '@reduxjs/toolkit';
 import { useHistory } from 'react-router-dom';
 import AddPostForm from './components/AddPostForm';
 import { addPost } from '../../states/postsSlice';
 
-const AddPost = () => {
+// 版本1
+const AddPost1 = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleSubmit = (data) => {
-    dispatch(
+  const handleSubmit = async (data) => {
+    await dispatch(
       addPost({
         ...data,
         id: nanoid(),
@@ -19,7 +20,45 @@ const AddPost = () => {
     history.push('/');
   };
 
-  return <AddPostForm onSubmit={handleSubmit} />;
+  return (
+    <AddPostForm onSubmit={handleSubmit} />
+  )
 };
 
-export default AddPost;
+
+const AddPost2 = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [addRequestStatus, setAddRequestStatus] = useState('idle');
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (data) => {
+    try {
+      setAddRequestStatus('pending');
+      const resultAction = await dispatch(
+        addPost({
+          ...data,
+          id: nanoid(),
+        }),
+      );
+      unwrapResult(resultAction);
+      setAddRequestStatus('idle');
+      history.push('/');
+    } catch (err) {
+      setError(err.message);
+      setAddRequestStatus('idle');
+    }
+  };
+
+
+  return (
+    <section>
+      {addRequestStatus === 'pending' && <div className="loader">Loading...</div>}
+      {error && <div className="error">{error}</div>}
+      <AddPostForm onSubmit={handleSubmit} />
+    </section>
+  )
+};
+
+// export default AddPost1;
+export default AddPost2;
