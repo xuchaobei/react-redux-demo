@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { nanoid, unwrapResult } from '@reduxjs/toolkit';
-import { useHistory } from 'react-router-dom';
+import { useHistory,Redirect } from 'react-router-dom';
 import AddPostForm from './components/AddPostForm';
 import { addPost } from '../../states/postsSlice';
 
@@ -31,6 +31,12 @@ const AddPost2 = () => {
   const history = useHistory();
   const [addRequestStatus, setAddRequestStatus] = useState('idle');
   const [error, setError] = useState(null);
+  const user = useSelector((state) => state.auth.user);
+
+
+  if (!user) {
+    return <Redirect to="/login" />;
+  }
 
   const handleSubmit = async (data) => {
     try {
@@ -38,7 +44,7 @@ const AddPost2 = () => {
       const resultAction = await dispatch(
         addPost({
           ...data,
-          id: nanoid(),
+          userId: user.id
         }),
       );
       unwrapResult(resultAction);
