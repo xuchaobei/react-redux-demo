@@ -17,7 +17,6 @@ function AddPostForm(props){
   };
 
   const handleSave = async () => {
-    const {title, content} = this.state;
     if (title.length > 0 && content.length > 0) {
       console.log(title, content)
     }
